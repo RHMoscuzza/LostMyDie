@@ -14,7 +14,7 @@ const Times = (amount) => {
 // Select your die
 const Dice = (amount) => {
 	return (
-		<button value={amount.value} className='dice' onClick={amount.update}>
+		<button value={amount.value} className='dNumber' onClick={amount.update}>
 		</button>
 	)
 };
@@ -33,6 +33,11 @@ class App extends React.Component {
 		};
 		this.newTimes = this.newTimes.bind(this);
 		this.findFinal = this.findFinal.bind(this);
+	}
+	renderFinal() {
+		return (
+			<Final final={this.state.final}></Final>
+		)
 	}
 
 }
