@@ -43,8 +43,8 @@ gulp.task('bs', () => {
     });
 });
 
-gulp.task('default', ['js','bs', 'styles'], () => {
+gulp.task('default', ['js','bs', 'style'], () => {
     gulp.watch('dev/**/*.js',['js']);
-    gulp.watch('dev/**/*.scss',['styles']);
-    gulp.watch('./public/styles/style.css',reload);
+    gulp.watch('dev/**/*.scss',['style']);
+    gulp.watch('./public/style/style.css',reload);
 });

@@ -73,12 +73,16 @@ class App extends React.Component {
 	}
 	render() {
 		return (
-			<div className='diceSection'>
+			<div className='diceRollSection'>
 				<div className='timesSection'>
 					{this.renderTimes()}
 				</div>
+				<div className='diceSection'>
+					{this.renderDice()}
+				</div>
 				<div className='finalSection'>
-					<h1>Your Total Is...</h1>
+					<h1>Your Die Roll Is...</h1>
+					{this.renderFinal}
 				</div>
 			</div>
 		)
