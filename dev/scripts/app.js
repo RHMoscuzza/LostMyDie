@@ -2,9 +2,6 @@
 import React from "react";
 import ReactDOM from "react-Dom";
 
-// Dice Number Array (d4, d6...)
-var dNumber = [4, 6, 8, 10, 12,	20];
-
 // Input how many dice you are rolling
 const Times = (amount) => {
 	return (
@@ -29,15 +26,66 @@ class App extends React.Component {
 		super();
 		this.state = {
 			times: 1,
-			final: 0
+			final: 0,
+			dNumber: [4, 6, 8, 10, 12,	20]
 		};
-		this.newTimes = this.newTimes.bind(this);
-		this.findFinal = this.findFinal.bind(this);
+		this.changeTimes = this.changeTimes.bind(this);
+		this.calculateFinal = this.calculateFinal.bind(this);
 	}
 	renderFinal() {
 		return (
 			<Final final={this.state.final}></Final>
 		)
 	}
-
+	renderTimes() {
+		return (
+			<Times value={this.state.times} update={this.changeTimes}></Times>
+		)
+	}
+	renderDNumber() {
+		var toRender = [];
+		var dNumber = this.state.dNumber;
+		for(var i = 0; i < dNumber.length; i++) {
+			toRender.push(
+				<Dice value={dNumber[i]} update={this.findFinal}></Dice> 
+			)
+		}
+		return toRender;
+	}
+	calculateFinal(event) {
+		var times = this.state.times;
+		var value = event.target.value;
+		var final = 0;
+		var random = () => {
+			return Math.floor(Math.random() * value) + 1;
+		}
+		for (var i = 0; i < times; i++) {
+			result = random();
+		}
+		this.setState({
+			final: final,
+		})
+	}
+	changeTimes(event) {
+		this.setState({
+			times: event.target.value
+		})
+	}
+	render() {
+		return (
+			<div className='diceSection'>
+				<div className='timesSection'>
+					{this.renderTimes()}
+				</div>
+				<div className='finalSection'>
+					<h1>Your Total Is...</h1>
+				</div>
+			</div>
+		)
+	}
 }
+
+ReactDOM.render(
+	<App />, 
+	document.getElementById('app')
+)
