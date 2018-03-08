@@ -5,10 +5,10 @@ import ReactDOM from "react-Dom";
 // Input how many dice you are rolling
 const Times = (amount) => {
 	return (
-		<input className='times' type='number' min='1' max='10' placeholder='1' onChange={amount.update}></input>
+		<input className='times' type='number' min='1' max='10' placeholder='0' onChange={amount.update}></input>
 	)
 };
-// Select your die
+// Select your die type
 const Dice = (amount) => {
 	return (
 		<button value={amount.value} className='dNumber' onClick={amount.update}>
@@ -27,7 +27,7 @@ class App extends React.Component {
 		this.state = {
 			times: 1,
 			final: 0,
-			dNumber: [4, 6, 8, 10, 12,	20]
+			dNumber: [4, 6, 8, 10, 12, 20]
 		};
 		this.changeTimes = this.changeTimes.bind(this);
 		this.calculateFinal = this.calculateFinal.bind(this);
@@ -75,14 +75,16 @@ class App extends React.Component {
 		return (
 			<div className='diceRollSection'>
 				<div className='timesSection'>
+					<h2>How Many Dice Do You Want To Roll?</h2>
 					{this.renderTimes()}
 				</div>
 				<div className='diceSection'>
-					{this.renderDice()}
+					<h2>Which Die Did You Lose?</h2>
+					{this.renderDNumber()}
 				</div>
 				<div className='finalSection'>
-					<h1>Your Die Roll Is...</h1>
-					{this.renderFinal}
+					<h2>Your Die Roll Is...</h2>
+					{this.calculateFinal}
 				</div>
 			</div>
 		)
