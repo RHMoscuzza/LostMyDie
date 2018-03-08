@@ -83,7 +83,7 @@ class App extends React.Component {
 					{this.renderDNumber()}
 				</div>
 				<div className='finalSection'>
-					<h2>Your Die Roll Is...</h2>
+					<h2>Your Total Is...</h2>
 					{this.calculateFinal}
 				</div>
 			</div>

@@ -11,9 +11,10 @@ body {
 }
 .app {
 	text-align: center;
-	height: 100vh;
-	width: 50vw;
+	height: 100%;
+	width: 50%;
 	margin: 0 auto;
+	border: 5px solid #000;
 }
 h1 {
 	font-family: 'Mina', sans-serif;
