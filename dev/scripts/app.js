@@ -12,7 +12,9 @@ const Times = (amount) => {
 const Dice = (amount) => {
 	return (
 		<button value={amount.value} className='dNumber' onClick={amount.update}>
+			{amount.value} Sided
 		</button>
+
 	)
 };
 // The final result of the base math
@@ -32,14 +34,14 @@ class App extends React.Component {
 		this.changeTimes = this.changeTimes.bind(this);
 		this.calculateFinal = this.calculateFinal.bind(this);
 	}
-	renderFinal() {
-		return (
-			<Final final={this.state.final}></Final>
-		)
-	}
 	renderTimes() {
 		return (
 			<Times value={this.state.times} update={this.changeTimes}></Times>
+		)
+	}
+	renderFinal() {
+		return (
+			<Final final={this.state.final}></Final>
 		)
 	}
 	renderDNumber() {
@@ -47,28 +49,28 @@ class App extends React.Component {
 		var dNumber = this.state.dNumber;
 		for(var i = 0; i < dNumber.length; i++) {
 			toRender.push(
-				<Dice value={dNumber[i]} update={this.findFinal}></Dice> 
+				<Dice value={dNumber[i]} update={this.calculateFinal} key={dNumber[i]}></Dice> 
 			)
 		}
 		return toRender;
 	}
-	calculateFinal(event) {
+	calculateFinal(e) {
 		var times = this.state.times;
-		var value = event.target.value;
+		var value = e.target.value;
 		var final = 0;
-		var random = () => {
+		var other = () => {
 			return Math.floor(Math.random() * value) + 1;
 		}
 		for (var i = 0; i < times; i++) {
-			result = random();
+			final = other();
 		}
 		this.setState({
 			final: final,
 		})
 	}
-	changeTimes(event) {
+	changeTimes(e) {
 		this.setState({
-			times: event.target.value
+			times: e.target.value
 		})
 	}
 	render() {
@@ -84,7 +86,7 @@ class App extends React.Component {
 				</div>
 				<div className='finalSection'>
 					<h2>Your Total Is...</h2>
-					{this.calculateFinal}
+					{this.renderFinal}
 				</div>
 			</div>
 		)
