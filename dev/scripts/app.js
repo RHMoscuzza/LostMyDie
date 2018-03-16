@@ -5,24 +5,23 @@ import ReactDOM from "react-Dom";
 // Input how many dice you are rolling
 const Times = (amount) => {
 	return (
-		<input className='times' type='number' min='1' max='10' placeholder='0' onChange={amount.update}></input>
+		<input className='times' type='number' min='1' max='10' placeholder='0' onChange={amount.update}/>
 	)
-};
+}
 // Select your die type
 const Dice = (amount) => {
 	return (
 		<button value={amount.value} className='dNumber' onClick={amount.update}>
 			{amount.value} Sided
 		</button>
-
 	)
-};
+}
 // The final result of the base math
 const Final = (amount) => {
 	return (
-		<h2 className='final'>{amount.final}</h2>
+		<h2 className='finalBox'>{amount.final}</h2>
 	)
-};
+}
 class App extends React.Component {
 	constructor() {
 		super();
@@ -34,14 +33,14 @@ class App extends React.Component {
 		this.changeTimes = this.changeTimes.bind(this);
 		this.calculateFinal = this.calculateFinal.bind(this);
 	}
-	renderTimes() {
-		return (
-			<Times value={this.state.times} update={this.changeTimes}></Times>
-		)
-	}
 	renderFinal() {
 		return (
-			<Final final={this.state.final}></Final>
+			<Final final={this.state.final}/>
+		)
+	}
+	renderTimes() {
+		return (
+			<Times value={this.state.times} update={this.changeTimes}/>
 		)
 	}
 	renderDNumber() {
@@ -49,7 +48,7 @@ class App extends React.Component {
 		var dNumber = this.state.dNumber;
 		for(var i = 0; i < dNumber.length; i++) {
 			toRender.push(
-				<Dice value={dNumber[i]} update={this.calculateFinal} key={dNumber[i]}></Dice> 
+				<Dice value={dNumber[i]} update={this.calculateFinal} key={dNumber[i]}/> 
 			)
 		}
 		return toRender;
@@ -58,11 +57,11 @@ class App extends React.Component {
 		var times = this.state.times;
 		var value = e.target.value;
 		var final = 0;
-		var other = () => {
+		var random = () => {
 			return Math.floor(Math.random() * value) + 1;
 		}
 		for (var i = 0; i < times; i++) {
-			final = other();
+			final += random();
 		}
 		this.setState({
 			final: final,
